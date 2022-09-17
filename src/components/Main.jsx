@@ -7,7 +7,16 @@ import { Redirect, Route, Switch } from 'react-router-native'
 const Main = () => {
   return (
     <View style={{ flex: 1 }}>
-      <Text>Setting up</Text>
+      <AppBar />
+      <Switch>
+        <Route path='/' exact>
+          <RepositoryList />
+        </Route>
+        <Route path='/signin' exact>
+          <Text>Mock</Text>
+        </Route>
+        <Redirect to='/' />
+      </Switch>
     </View>
   )
 }
