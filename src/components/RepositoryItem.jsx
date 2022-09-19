@@ -5,7 +5,7 @@ import RepositoryStats from './RepositoryStats.jsx'
 import theme from '../theme.js'
 
 const RepositoryItemHeader = ({ ownerAvatarUrl, fullName, description, language }) => (
-  <View style={{ flexDirection: 'row', paddingBottom: 2 }}>
+  <View style={styles.cards}>
     <View style={{ paddingRight: 10 }}>
       <Image style={styles.image} source={{ uri: ownerAvatarUrl }} />
     </View>
@@ -25,6 +25,18 @@ const RepositoryItem = (props) => (
 )
 
 const styles = StyleSheet.create({
+  cards: {
+    borderWidth: 20,
+    borderBottomWidth: 7,
+    borderRadius: 5,
+    borderColor: '#ddd',
+    // shadowOffset: { width: 4, height: 10 },
+    // shadowOpacity: 0.4,
+    // shadowColor: 'purple',
+    elevation: 1,
+    flexDirection: 'row',
+    paddingBottom: 2
+  },
   container: {
     padding: 20,
     paddingVertical: 5

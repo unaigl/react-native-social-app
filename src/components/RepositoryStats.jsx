@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import StyledText from './StyledText.jsx'
 
 const parseThousands = value => {
@@ -10,7 +10,7 @@ const parseThousands = value => {
 
 const RepositoryStats = props => {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+    <View style={styles.stats}>
       <View>
         <StyledText align='center' fontWeight='bold'>{parseThousands(props.stargazersCount)}</StyledText>
         <StyledText align='center'>Stars</StyledText>
@@ -30,5 +30,14 @@ const RepositoryStats = props => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  stats: {
+    marginTop: 15,
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  }
+})
 
 export default RepositoryStats

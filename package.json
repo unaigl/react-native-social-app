@@ -29,20 +29,5 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.24.0"
   },
-  "private": true,
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": [
-      "standard",
-      "standard-jsx",
-      "standard-react"
-    ],
-    "rules": {
-      "react/prop-types": "off",
-      "space-before-function-paren": [
-        "off",
-        "always"
-      ]
-    }
-  }
+  "private": true
 }
