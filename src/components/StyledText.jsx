@@ -26,7 +26,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function StyledText ({ align, children, color, fontSize, fontWeight, style, ...restOfProps }) {
+// ERR Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+// I think this solution is a workaround solution. Because both Child and Parent component are class component. Not the function component.
+// So I think react should support function component use ref the same as class component.
+const StyledText = React.forwardRef(({ align, children, color, fontSize, fontWeight, style, ...restOfProps }, ref) => {
   const textStyles = [
     styles.text,
     align === 'center' && styles.textAlignCenter,
@@ -34,7 +37,8 @@ export default function StyledText ({ align, children, color, fontSize, fontWeig
     color === 'secondary' && styles.colorSecondary,
     fontSize === 'subheading' && styles.subheading,
     fontWeight === 'bold' && styles.bold,
-    style
+    style,
+    ref
   ]
 
   return (
@@ -42,4 +46,6 @@ export default function StyledText ({ align, children, color, fontSize, fontWeig
       {children}
     </Text>
   )
-}
+})
+
+export default StyledText

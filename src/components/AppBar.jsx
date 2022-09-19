@@ -31,10 +31,11 @@ const AppBarTab = ({ children, to }) => {
     styles.text,
     active && styles.active
   ]
+  const ref = React.createRef()
 
   return (
     <Link to={to} component={TouchableWithoutFeedback}>
-      <StyledText fontWeight='bold' style={textStyles}>
+      <StyledText ref={ref} fontWeight='bold' style={textStyles}>
         {children}
       </StyledText>
     </Link>
