@@ -11,6 +11,6 @@
         "off",
         "always"
       ],
-      "eol-last": ["error", "never"]
+      "eol-last": ["error", "never"],
     }
 }

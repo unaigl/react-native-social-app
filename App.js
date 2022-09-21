@@ -1,7 +1,16 @@
-import React from 'react'
-import Main from './src/components/Main.jsx'
-import { NativeRouter } from 'react-router-native'
+import { View, Text } from "react-native";
+import React from "react";
+import Box from "./src/Box";
+import GetBalance from "./src/GetBalance";
 
-export default function App () {
-  return <NativeRouter><Main /></NativeRouter>
-}
+const App = () => {
+  return (
+    <View>
+      <Text>App mm</Text>
+      <Box />
+      <GetBalance />
+    </View>
+  );
+};
+
+export default App;
