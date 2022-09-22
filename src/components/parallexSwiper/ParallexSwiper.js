@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -8,10 +8,10 @@ import {
   Animated,
   Image,
   TouchableOpacity,
-} from 'react-native';
-import styles from './styles';
+} from "react-native";
+import styles from "./styles";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
 const AnimatedList = Animated.createAnimatedComponent(FlatList);
 
@@ -23,7 +23,7 @@ const getInterpolate = (animatedScroll, i) => {
   return animatedScroll.interpolate({
     inputRange,
     outputRange,
-    extrapolate: 'clamp',
+    extrapolate: "clamp",
   });
 };
 
@@ -58,100 +58,108 @@ export default class App extends React.Component {
   opacity = this.coverScale.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [1, 0.15, 0],
-    extrapolate: 'clamp',
+    extrapolate: "clamp",
   });
   translateY = this.coverScale.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [150, 50, -155],
-    extrapolate: 'clamp',
+    extrapolate: "clamp",
   });
   scale = this.coverScale.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [1, 1.12, 1.25],
-    extrapolate: 'clamp',
+    extrapolate: "clamp",
   });
   render() {
     return (
-      <AnimatedList
-        data={this.props.data}
-        scrollEnabled={!this.state.scrollDisabled}
-        showsHorizontalScrollIndicator={false}
-        style={{ flexDirection: 'row' }}
-        contentContainerStyle={{ justifyContent: 'center' }}
-        pagingEnabled
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: this.imageParallex } } }],
-          { useNativeDriver: true },
-        )}
-        horizontal
-        keyExtractor={item => item.name}
-        scrollEventThrottle={1}
-        renderItem={({ item, index }) => (
-          <Animated.View
-            key={item.name}
-            style={[
-              styles.item,
-              {
-                transform: [{ scale: this.scale }],
-              },
-            ]}
-          >
-            <TouchableOpacity
-              activeOpacity={1}
-              onPress={() => this.animate()}
-              style={styles.touchableHeight}
+      <View style={styles.container}>
+        <AnimatedList
+          data={this.props.data}
+          scrollEnabled={!this.state.scrollDisabled}
+          showsHorizontalScrollIndicator={false}
+          style={{ flexDirection: "row" }}
+          contentContainerStyle={{ justifyContent: "center" }}
+          pagingEnabled
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: this.imageParallex } } }],
+            { useNativeDriver: true }
+          )}
+          horizontal
+          keyExtractor={(item) => item.name}
+          scrollEventThrottle={1}
+          renderItem={({ item, index }) => (
+            <Animated.View
+              key={item.name}
+              style={[
+                styles.item,
+                {
+                  transform: [{ scale: this.scale }],
+                },
+              ]}
             >
-              <Animated.View style={styles.shadowContainer}>
-                <View style={styles.innerShadow}>
-                  <Animated.Image
+              <TouchableOpacity
+                activeOpacity={1}
+                onPress={() => this.animate()}
+                style={styles.touchableHeight}
+              >
+                <Animated.View style={styles.shadowContainer}>
+                  <View style={styles.innerShadow}>
+                    <Animated.Image
+                      style={[
+                        styles.coverImage,
+                        {
+                          transform: [
+                            {
+                              translateX: getInterpolate(
+                                this.imageParallex,
+                                index
+                              ),
+                            },
+                          ],
+                        },
+                      ]}
+                      source={item.cover}
+                    />
+                  </View>
+                  <Animated.View
                     style={[
-                      styles.coverImage,
+                      styles.innerAnimated,
                       {
-                        transform: [
-                          {
-                            translateX: getInterpolate(this.imageParallex, index),
-                          },
-                        ],
+                        opacity: this.opacity,
                       },
                     ]}
-                    source={item.cover}
-                  />
-                </View>
+                  >
+                    <Animated.Image
+                      style={styles.avatar}
+                      source={item.avatar}
+                    />
+                    <Text style={styles.title}>{item.name}</Text>
+                  </Animated.View>
+                </Animated.View>
                 <Animated.View
                   style={[
-                    styles.innerAnimated,
+                    styles.animatedCard,
                     {
-                      opacity: this.opacity,
+                      transform: [
+                        {
+                          translateY: this.translateY,
+                        },
+                      ],
                     },
                   ]}
                 >
-                  <Animated.Image style={styles.avatar} source={item.avatar} />
-                  <Text style={styles.title}>{item.name}</Text>
-                </Animated.View>
-              </Animated.View>
-              <Animated.View
-                style={[
-                  styles.animatedCard,
-                  {
-                    transform: [
-                      {
-                        translateY: this.translateY,
-                      },
-                    ],
-                  },
-                ]}
-              >
-                <View style={styles.innerCard}>
-                  <Text style={styles.cardTitle}>{item.cardTitle}</Text>
-                  <View style={styles.cardPadding}>
-                    <Text style={styles.cardText}>{item.cardText}</Text>
+                  <View style={styles.innerCard}>
+                    <Text style={styles.cardTitle}>{item.cardTitle}</Text>
+                    <View style={styles.cardPadding}>
+                      <Text style={styles.cardText}>{item.cardText}</Text>
+                    </View>
                   </View>
-                </View>
-              </Animated.View>
-            </TouchableOpacity>
-          </Animated.View>
-        )}
-      />
+                </Animated.View>
+              </TouchableOpacity>
+            </Animated.View>
+          )}
+        />
+      </View>
     );
   }
 }

@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useWalletConnect } from "@walletconnect/react-native-dapp";
-import Card from "../components/Card";
+import ParallexSwiper from "../components/parallexSwiper/ParallexSwiper";
+import data from "../components/parallexSwiper/data";
 
 const shortenAddress = (address: string) => {
   return `${address.slice(0, 6)}...${address.slice(
@@ -41,7 +42,7 @@ export default function WalletConnectExperience() {
         <>
           <Text>{shortenAddress(connector.accounts[0])}</Text>
           <Button pos="center" onPress={killSession} label="Log out" />
-          <Card />
+          <ParallexSwiper data={data} />
         </>
       )}
     </>
