@@ -4,14 +4,14 @@ import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import ParallexSwiper from "../components/parallexSwiper/ParallexSwiper";
 import data from "../components/parallexSwiper/data";
 
-const shortenAddress = (address: string) => {
+const shortenAddress = (address) => {
   return `${address.slice(0, 6)}...${address.slice(
     address.length - 4,
     address.length
   )}`;
 };
 
-function Button({ onPress, label, pos }: any) {
+function Button({ onPress, label, pos }) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
       <Text style={styles.text}>{label}</Text>
