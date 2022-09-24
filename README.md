@@ -8,6 +8,6 @@
 ## Run this on your own
 
 - clone repo
-- yarn install
+- YARN install // YARN !!!!!!!!
 - expo start
 - scan QR code
