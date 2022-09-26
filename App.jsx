@@ -7,6 +7,7 @@ import WalletConnectProvider from "@walletconnect/react-native-dapp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import WalletConnectExperience from "./src/walletConnect/WalletConnectExperience";
+import RepositoryList from "./src/components/fetchRepos/RepositoryList"
 
 const SCHEME_FROM_APP_JSON = "walletconnect-example";
 
@@ -24,6 +25,7 @@ export default function App() {
     >
       <View style={styles.container}>
         <WalletConnectExperience />
+        <RepositoryList />
         <StatusBar style="auto" />
       </View>
     </WalletConnectProvider>
